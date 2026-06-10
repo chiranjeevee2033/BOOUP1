@@ -1,5 +1,6 @@
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
 from datetime import datetime
+from zoneinfo import ZoneInfo
 import google_sheets
 import time
 
@@ -105,7 +106,11 @@ def scrape_chartink(url, worksheet_name):
         finally:
             browser.close()
 
-        now = datetime.now().strftime("Last updated on: %Y-%m-%d %H:%M:%S")
+        now = datetime.now(
+            ZoneInfo("Asia/Kolkata")
+        ).strftime(
+            "Last updated: %d-%m-%Y %H:%M:%S IST"
+        )
         google_sheets.append_footer(sheet_id, worksheet_name, [now])
 
         print(f"✅ Worksheet '{worksheet_name}' update finished.")

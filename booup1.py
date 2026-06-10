@@ -46,7 +46,7 @@ def scrape_chartink(url, worksheet_name):
         )
         page = context.new_page()
 
-        headers = ["Sr", "Stock Name", "Symbol", "Links", "Change", "Price", "Volume"]
+        headers = ["Sr", "Stock Name", "Symbol", "Close", "Change", "Price", "Volume"]
 
         try:
             page.goto(url, wait_until="domcontentloaded")
@@ -57,15 +57,25 @@ def scrape_chartink(url, worksheet_name):
                 rows = [[""]]
             else:
                 try:
-                    page.wait_for_selector("div.relative table tbody tr", timeout=10000)
-                    table_rows = page.query_selector_all("div.relative table tbody tr")
+                    page.wait_for_selector(
+                        "tbody tr",
+                        timeout=10000
+                    )
+                    
+                    table_rows = page.query_selector_all(
+                        "tbody tr"
+                    )
 
                     print(f"📥 Extracted {len(table_rows)} rows.")
 
                     rows = []
                     for row in table_rows:
                         cells = row.query_selector_all("td")
-                        row_data = [cell.inner_text().strip() for cell in cells]
+                        row_data = [
+                            cell.text_content().strip()
+                            if cell.text_content() else ""
+                            for cell in cells
+                        ]
                         rows.append(row_data)
 
                     if len(rows) == 0:
@@ -75,7 +85,7 @@ def scrape_chartink(url, worksheet_name):
                 except PlaywrightTimeoutError:
                     print(f"❌ Table not found at {url}. Writing 'No Data'.")
                     rows = [[""]]
-
+           
             google_sheets.update_google_sheet_by_name(
                 sheet_id, worksheet_name, headers, rows
             )

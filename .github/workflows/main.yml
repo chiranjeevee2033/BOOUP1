@@ -26,5 +26,5 @@ jobs:
 
       - name: Run Python script
         env:
-          GOOGLE_CREDENTIALS: ${{ secrets.NEW }}
+          NEW: ${{ secrets.NEW }}
         run: python booup1.py

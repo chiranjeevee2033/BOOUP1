@@ -49,15 +49,15 @@ def scrape_chartink(url, worksheet_name):
         headers = ["Sr", "Stock Name", "Symbol", "Links", "Change", "Price", "Volume"]
 
         try:
-            page.goto(url, wait_until="networkidle")
-            time.sleep(3)
+            page.goto(url, wait_until="domcontentloaded")
+            time.sleep(1)
 
             if page.is_visible("text='No records found'"):
                 print(f"⚠️ No records found at {url}. Writing 'No Data'.")
                 rows = [[""]]
             else:
                 try:
-                    page.wait_for_selector("div.relative table tbody tr", timeout=60000)
+                    page.wait_for_selector("div.relative table tbody tr", timeout=10000)
                     table_rows = page.query_selector_all("div.relative table tbody tr")
 
                     print(f"📥 Extracted {len(table_rows)} rows.")
@@ -93,7 +93,6 @@ def scrape_chartink(url, worksheet_name):
             )
 
         finally:
-            page.screenshot(path=f"{worksheet_name}_debug.png", full_page=True)
             browser.close()
 
         now = datetime.now().strftime("Last updated on: %Y-%m-%d %H:%M:%S")

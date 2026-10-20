@@ -5,14 +5,14 @@ import google_sheets
 import time
 
 URLS = [
-    "https://chartink.com/screener/copy-copy-copy-sreelakshmi-guruvayoorappan-b-atr-volume-rocket-8",
-    "https://chartink.com/screener/agp-bullish2-p5",
-    "https://chartink.com/screener/aaa13-vp-sheshapathi",
-    "https://chartink.com/screener/agp-shesha-bulloong1",
-    "https://chartink.com/screener/shesha-magic-buy-love",
-    "https://chartink.com/screener/copy-mahi-2-master-trader-vishnu-final-40-address-this-urgent-bellinaire-38-to-47-3",
-    "https://chartink.com/screener/agp-bullish2",
-    "https://chartink.com/screener/copy-atp-above-long-24",
+    "https://chartink.com/screener/copy-akshat-monthly-momentum-37",
+	"https://chartink.com/screener/copy-vikram-rocket-up-nr7",
+	"https://chartink.com/screener/volume-shockers-stocks-with-rising-volumes-10102416",
+	"https://chartink.com/screener/copy-2-ebitda-margin-is-greater-than-30-and-pat-margin-is-greater-than-20",
+	"https://chartink.com/screener/copy-positional-f-0-at-2",
+	"https://chartink.com/screener/copy-f-o-rsi-84",
+	"https://chartink.com/screener/copy-ebitda-margin-is-greater-than-30-and-pat-margin-is-greater-than-20-25",
+	"https://chartink.com/screener/copy-high-ebitda-i-e-opm",
     "https://chartink.com/screener/22-nw-shesha-magic-buy-love-fut",
     "https://chartink.com/screener/copy-nr-f-0",
     "https://chartink.com/screener/copy-rk-position-f-0",
